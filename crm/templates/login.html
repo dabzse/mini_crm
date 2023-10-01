@@ -1,0 +1,15 @@
+<h1 class="text-danger text-center">ERROR 401</h1>
+<h2 class="text-primary text-center">I don't know who are you!</h2>
+<h2 class="text-success text-center">You must be logged in to see this page!</h2>
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">username</label>
+        <input type="text" class="form-control" name="username" placeholder="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">password</label>
+        <input type="password" class="form-control" name="password" placeholder="password" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Sign in</button>
+</form>

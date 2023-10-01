@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <h1 class="text-center my-5">You can register here...</h1>
+    <form method="post" action="{% url 'home' %}"  class="row g-3 needs-validation">
+        {% csrf_token %}
+        <div class="col-md-4">
+            <label for="first_name" class="form-label">First name</label>
+            <input type="text" class="form-control" name="first_name" required>
+        </div>
+        <div class="col-md-4">
+            <label for="last_name" class="form-label">Last name</label>
+            <input type="text" class="form-control" name="last_name" required>
+        </div>
+        <div class="col-md-4">
+            <label for="username" class="form-label">Username</label>
+            <div class="input-group">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" name="username" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-Mail address</label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+            <button class="btn btn-primary" type="submit">Sign up</button>
+    </form>
+
+{% endblock content %}

@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from .forms import RegisterForm
 
 
 # Create your views here.
 def home(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        # Authenticate user
+        username = request.POST.get('username')
+        password = request.POST.get('password')        # Authenticate user
         user = authenticate(request, username=username, password=password)
         if user is not None:
             # Login user
@@ -18,8 +18,7 @@ def home(request):
             return redirect("home")
         else:
             messages.warning(request, ("Error logging in - Please try again..."))
-            return render(request, "home.html", {})
-            # return redirect("home.html")
+            return redirect("home")
     else:
         return render(request, "home.html", {})
 
@@ -27,11 +26,31 @@ def home(request):
 def logout_user(request):
     logout(request)
     messages.info(request, ("You have been logged out!"))
-    return render(request, "home.html", {})
+    return redirect("home")
 
 
 def register_user(request):
     if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Get form values
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password1"]
+            # Authenticate user
+            user = authenticate(username=username, password=password)
+            # Login user
+            login(request, user)
+            messages.success(request, ("You have been registered!"))
+            return redirect("home")
+    else:
+        form = RegisterForm()
+        return render(request, "register.html", {"form": form})
+
+    return render(request, "register.html", {"form": form})
+
+
+'''
         # Get form values
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
@@ -69,3 +88,5 @@ def register_user(request):
             return render(request, "register.html", {})
     else:
         return render(request, "register.html", {})
+
+'''

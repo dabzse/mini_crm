@@ -3,8 +3,20 @@
 {% block content %}
 
     <h1 class="text-center my-5">You can register here...</h1>
-    <form method="post" action="{% url 'home' %}"  class="row g-3 needs-validation">
+    <form method="post" action="" class="row g-3 needs-validation">
         {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    {% for error in form.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        {% comment %}
         <div class="col-md-4">
             <label for="first_name" class="form-label">First name</label>
             <input type="text" class="form-control" name="first_name" required>
@@ -24,6 +36,8 @@
             <label for="email" class="form-label">E-Mail address</label>
             <input type="email" class="form-control" name="email" required>
         </div>
+        {% endcomment %}
+
             <button class="btn btn-primary" type="submit">Sign up</button>
     </form>
 

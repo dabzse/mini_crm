@@ -61,6 +61,17 @@ def customer_data(request, pk):
         return redirect("home")
 
 
+def del_cst(request, pk):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(id=pk)
+        customer.delete()
+        messages.success(request, ("Customer has been deleted!"))
+        return redirect("home")
+    else:
+        messages.warning(request, ("Please login first..."))
+        return redirect("home")
+
+
 
 
 '''

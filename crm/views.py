@@ -7,9 +7,11 @@ from .forms import RegisterForm
 
 # Create your views here.
 def home(request):
+    customers = Customer.objects.all()
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.POST.get('password')        # Authenticate user
+        password = request.POST.get('password')
+        # Authenticate user
         user = authenticate(request, username=username, password=password)
         if user is not None:
             # Login user
@@ -19,8 +21,7 @@ def home(request):
         else:
             messages.warning(request, ("Error logging in - Please try again..."))
             return redirect("home")
-    else:
-        return render(request, "home.html", {})
+    return render(request, "home.html", {"customers": customers})
 
 
 def logout_user(request):

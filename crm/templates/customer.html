@@ -27,6 +27,22 @@
             <div class="card-body">
                 <h2 class="card-title">{{ customer.first_name }} {{ customer.last_name  }}</h2>
                 <div class="h-25 w-100 d-inline-block"></div>
+                <p class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{ customer.id }}</div>
+                            </div>
+                            <span class="badge bg-primary">ID</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{ customer.created_at }}</div>
+                            </div>
+                            <span class="badge bg-primary">Created at</span>
+                        </li>
+                    </ul>
+                </p>
                 <p class="card-text placeholder-glow">
                     <span class="placeholder col-8 bg-primary">{{ customer.username }}</span>
                     <span class="placeholder col-8 bg-success">{{ customer.email }}</span>
@@ -39,4 +55,11 @@
         </div>
     </div>
 </div>
+
+<div class="btn-group" role="group">
+    <a href="{% url 'home' %}" class="btn btn-primary">BACK</a>
+    <a href="{% url 'home' %}" class="btn btn-success">EDIT</a>
+    <a href="{% url 'home' %}" class="btn btn-danger">DELETE</a>
+</div>
+
 {% endblock %}

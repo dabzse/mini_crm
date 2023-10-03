@@ -8,7 +8,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button class="btn btn-primary" type="submit">Update customer</button>
-    <button class="btn btn-secondary" type="submit">I changed my mind: go home</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">I changed my mind: go home</a>
 </form>
 
 {% endblock %}

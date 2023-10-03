@@ -1,0 +1,6 @@
+id,username,first_name,last_name,email,created_at,updated_at
+1,uname1,1 fake,1 name,uname1@local.host,2020-10-10 20:20:20.101010,2020-10-10 20:20:20.101010
+2,uname2,2 fake,2 name,uname2@local.host,2020-10-10 20:20:20.101010,2020-10-10 20:20:20.101010
+3,uname3,3 fake,3 name,uname3@local.host,2020-10-10 20:20:20.101010,2020-10-10 20:20:20.101010
+4,uname4,4 fake,4 name,uname4@local.host,2020-10-10 20:20:20.101010,2020-10-10 20:20:20.101010
+5,uname5,5 fake,5 name,uname5@local.host,2020-10-10 20:20:20.101010,2020-10-10 20:20:20.101010

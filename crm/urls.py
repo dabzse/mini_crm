@@ -9,6 +9,7 @@ urlpatterns = [
     path("register_user/", views.register_user, name="register_user"),
     path("customer/<int:pk>", views.customer_data, name="customer_data"),
     path("del_cst/<int:pk>", views.del_cst, name="del_cst"),
+    path("add_customer/", views.add_customer, name="add_customer"),
 ]
 
 '''

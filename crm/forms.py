@@ -2,6 +2,7 @@ from typing import Any
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Customer
 
 
 class RegisterForm(UserCreationForm):
@@ -55,3 +56,26 @@ class RegisterForm(UserCreationForm):
                 'help_text': '<span class="form-text text-muted">Enter the same password as above, for verification.</span>'
             }
         )
+
+
+class AddCustomerForm(forms.ModelForm):
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'})
+    )
+    first_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'})
+    )
+    last_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'})
+    )
+    email = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'E-Mail address'})
+    )
+
+    class Meta:
+        model = Customer
+        fields = ('username', 'first_name', 'last_name', 'email')

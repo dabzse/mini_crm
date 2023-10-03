@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 # from django.contrib.auth.models import User
-from .forms import RegisterForm
+from .forms import RegisterForm, AddCustomerForm
 from .models import Customer
 
 
@@ -71,6 +71,19 @@ def del_cst(request, pk):
         messages.warning(request, ("Please login first..."))
         return redirect("home")
 
+
+def add_customer(request):
+    form = AddCustomerForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                messages.success(request, ("Customer has been added!"))
+                return redirect("home")
+        return render(request, "add_customer.html", {"form": form})
+    else:
+        messages.warning(request, ("Please login first..."))
+        return redirect("home")
 
 
 

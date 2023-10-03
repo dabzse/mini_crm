@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 # from django.contrib.auth.models import User
 from .forms import RegisterForm
+from .models import Customer
 
 
 # Create your views here.
@@ -49,6 +50,17 @@ def register_user(request):
         return render(request, "register.html", {"form": form})
 
     return render(request, "register.html", {"form": form})
+
+
+def customer_data(request, pk):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(id=pk)
+        return render(request, "customer.html", {"customer": customer})
+    else:
+        messages.warning(request, ("Please login first..."))
+        return redirect("home")
+
+
 
 
 '''

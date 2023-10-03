@@ -1,0 +1,24 @@
+<table class="table table-bordered border-primary table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for customer in customers %}
+        <tr>
+            <th scope="row">{{ customer.id }}</th>
+            <td><a href="{% url 'customer_data' customer.id %}">{{ customer.username }}</a></td>
+            <td>{{ customer.first_name }}</td>
+            <td>{{ customer.last_name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>+ -</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -7,10 +7,11 @@
 
 <h1 class="text-primary text-center">Welcome {{ user.username }}!</h1>
 
-{% comment %}
+{% if customers %}
     {% include "crm.html" %}
-    # not yet exists
-{% endcomment %}
+{% else %}
+    <h2 class="text-center">No customers yet.</h2>
+{% endif %}
 
 {% else %}
     {% include "login.html" %}

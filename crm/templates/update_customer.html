@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1>Update existing customer here...</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Update customer</button>
+    <button class="btn btn-secondary" type="submit">I changed my mind: go home</button>
+</form>
+
+{% endblock %}

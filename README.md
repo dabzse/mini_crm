@@ -26,3 +26,8 @@ or use your own, whatever you like. for testing purposes SQLite3 is enough for m
 ### If you would like to...
 
 do it
+
+
+## Currently in progress:
+
+- paginator + design

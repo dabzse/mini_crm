@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 # from django.contrib.auth.models import User
 from .forms import RegisterForm, AddCustomerForm
@@ -36,7 +37,25 @@ def home(request):
 
     else:
         customers = Customer.objects.all()
-    return render(request, "home.html", {"customers": customers})
+
+    records_per_page = 20
+    paginator = Paginator(customers, records_per_page)
+    page = request.GET.get("page")
+    try:
+        customers = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        customers = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        customers = paginator.page(paginator.num_pages)
+
+    context = {
+        "count": paginator.count,
+        "customers": customers,
+    }
+
+    return render(request, "home.html", context)
 
 
 def logout_user(request):

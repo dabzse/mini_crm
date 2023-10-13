@@ -8,6 +8,7 @@
 <h1 class="text-primary text-center">Welcome {{ user.username }}!</h1>
 
 {% if customers %}
+    <h2>Total number of records: {{ count }}</h2>
     {% include "crm.html" %}
 {% else %}
     <h2 class="text-center">No customers yet.</h2>

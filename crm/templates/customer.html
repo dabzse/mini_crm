@@ -7,7 +7,7 @@
     <div class="card-header">
         {% comment %} <ul class="nav nav-tabs card-header-tabs"> {% endcomment %}
         {% comment %}
-        feel free choose any of these navs: tabs, pills. pills is now active
+        feel free to choose any of these navs: tabs, pills. pills is now active
         {% endcomment %}
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
@@ -19,9 +19,15 @@
         </ul>
     <div class="row g-0">
         <div class="col-md-4">
-            <img src="{{ customer.image.url }}"
+            {% if customer.avatar %}
+            <img src="{{ customer.avatar.url }}"
                 class="img-fluid rounded-start"
                 alt="{{ customer.first_name }} {{ customer.last_name  }}">
+            {% else %}
+            <img src="{% static 'images/user_icon.png' %}"
+                class="img-fluid rounded-start"
+                alt="{{ customer.first_name }} {{ customer.last_name  }}">
+            {% endif %}
         </div>
         <div class="col-md-8">
             <div class="card-body">

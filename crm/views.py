@@ -33,21 +33,22 @@ def home(request):
             Q(last_name__icontains=q) |
             Q(email__icontains=q)
         )
-        customers = Customer.objects.filter(multiple_q)
+        customers = Customer.objects.filter(multiple_q).order_by('id')
 
     else:
-        customers = Customer.objects.all()
+        customers = Customer.objects.all().order_by('id')
 
     records_per_page = 20
     paginator = Paginator(customers, records_per_page)
     page = request.GET.get("page")
+
     try:
         customers = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer deliver the first page
+        # If page is not an integer, deliver the first page
         customers = paginator.page(1)
     except EmptyPage:
-        # If page is out of range deliver last page of results
+        # If page is out of range, deliver last page of results
         customers = paginator.page(paginator.num_pages)
 
     context = {

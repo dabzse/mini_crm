@@ -9,6 +9,7 @@
 
 {% if customers %}
     <h2>Total number of records: {{ count }}</h2>
+    <p>Showing {{ customers|length }} of {{ count }} results.</p>
     {% include "crm.html" %}
 {% else %}
     <h2 class="text-center">No customers yet.</h2>
